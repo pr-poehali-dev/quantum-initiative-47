@@ -1,4 +1,4 @@
-import { Bike, Laptop, Leaf, CalendarCheck, Plus, Minus, Phone, MapPin } from "lucide-react"
+import { Bike, Laptop, Leaf, CalendarCheck, Plus, Minus, Phone, MapPin, ShoppingCart, X, Trash2 } from "lucide-react"
 import Icon from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -14,6 +14,10 @@ interface MenuItem {
   price: string
   emoji: string
   tag?: string
+}
+
+interface CartItem extends MenuItem {
+  qty: number
 }
 
 type MenuCategory = "smoothie" | "coffee" | "tea" | "lemonade"
@@ -63,9 +67,35 @@ const categoryIcons: Record<MenuCategory, string> = {
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [activeCategory, setActiveCategory] = useState<MenuCategory>("smoothie")
+  const [cart, setCart] = useState<CartItem[]>([])
+  const [cartOpen, setCartOpen] = useState(false)
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
+  }
+
+  const addToCart = (item: MenuItem) => {
+    setCart(prev => {
+      const existing = prev.find(c => c.name === item.name)
+      if (existing) return prev.map(c => c.name === item.name ? { ...c, qty: c.qty + 1 } : c)
+      return [...prev, { ...item, qty: 1 }]
+    })
+  }
+
+  const changeQty = (name: string, delta: number) => {
+    setCart(prev =>
+      prev.map(c => c.name === name ? { ...c, qty: c.qty + delta } : c)
+         .filter(c => c.qty > 0)
+    )
+  }
+
+  const totalItems = cart.reduce((s, c) => s + c.qty, 0)
+  const totalPrice = cart.reduce((s, c) => s + c.qty * parseInt(c.price), 0)
+
+  const cartWhatsapp = () => {
+    const lines = cart.map(c => `${c.emoji} ${c.name} × ${c.qty} = ${c.qty * parseInt(c.price)} ₽`)
+    const text = `Заказ из Зелёного Импульса:\n${lines.join("\n")}\n\nИтого: ${totalPrice} ₽`
+    window.open(`https://t.me/Death2488?text=${encodeURIComponent(text)}`, "_blank")
   }
 
   const faqs: FAQ[] = [
@@ -93,6 +123,72 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#0B1A0F] text-white">
+
+      {/* Cart Sidebar */}
+      {cartOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setCartOpen(false)} />
+          <div className="relative w-full max-w-md bg-[#0f2015] ring-1 ring-green-500/20 h-full flex flex-col shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/10">
+              <div className="flex items-center gap-3">
+                <ShoppingCart className="w-5 h-5 text-green-400" />
+                <h2 className="text-xl font-bold">Корзина</h2>
+                {totalItems > 0 && (
+                  <span className="px-2 py-0.5 bg-green-500 text-white text-xs font-bold rounded-full">{totalItems}</span>
+                )}
+              </div>
+              <button onClick={() => setCartOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Items */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              {cart.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full text-center gap-4">
+                  <div className="text-6xl">🛒</div>
+                  <p className="text-white/60">Корзина пуста</p>
+                  <p className="text-white/40 text-sm">Добавьте напитки из меню</p>
+                </div>
+              ) : (
+                cart.map(item => (
+                  <div key={item.name} className="rounded-2xl bg-white/5 ring-1 ring-white/10 p-4 flex items-center gap-4">
+                    <div className="text-3xl">{item.emoji}</div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm truncate">{item.name}</p>
+                      <p className="text-green-400 font-bold text-sm">{item.qty * parseInt(item.price)} ₽</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => changeQty(item.name, -1)} className="w-7 h-7 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+                        {item.qty === 1 ? <Trash2 className="w-3 h-3 text-red-400" /> : <Minus className="w-3 h-3" />}
+                      </button>
+                      <span className="w-5 text-center font-bold text-sm">{item.qty}</span>
+                      <button onClick={() => changeQty(item.name, 1)} className="w-7 h-7 flex items-center justify-center rounded-full bg-green-500/30 hover:bg-green-500/50 transition-colors">
+                        <Plus className="w-3 h-3 text-green-300" />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Footer */}
+            {cart.length > 0 && (
+              <div className="p-6 border-t border-white/10 space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-white/70">Итого:</span>
+                  <span className="text-2xl font-bold text-green-400">{totalPrice} ₽</span>
+                </div>
+                <Button onClick={cartWhatsapp} className="w-full bg-green-500 text-white hover:bg-green-400 rounded-xl py-4 font-bold text-base">
+                  Оформить через Telegram
+                </Button>
+                <p className="text-white/40 text-xs text-center">Заказ отправится в наш Telegram, мы свяжемся с вами</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
       <div className="relative min-h-screen">
         {/* Background Image with Overlay */}
@@ -130,10 +226,22 @@ const Index = () => {
           <div className="flex items-center gap-3">
             <a
               href="tel:+79635682811"
-              className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
+              className="hidden sm:flex px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
             >
               Позвонить
             </a>
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative flex items-center gap-2 px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span className="hidden sm:inline">Корзина</span>
+              {totalItems > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-green-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <Button className="hidden sm:inline-flex bg-green-500 text-white hover:bg-green-400 rounded-full px-6 font-semibold">Забронировать</Button>
           </div>
         </nav>
@@ -274,9 +382,10 @@ const Index = () => {
                   <span className="text-xl font-bold text-green-400">{item.price}</span>
                   <Button
                     size="sm"
+                    onClick={() => { addToCart(item); setCartOpen(true) }}
                     className="bg-green-500/20 text-green-300 hover:bg-green-500 hover:text-white ring-1 ring-green-400/30 rounded-full px-4 transition-all"
                   >
-                    Заказать
+                    В корзину
                   </Button>
                 </div>
               </div>
