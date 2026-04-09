@@ -481,15 +481,25 @@ const Index = () => {
                 </p>
 
                 <div className="space-y-4">
-                  <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
+                  <a href="tel:+79635682811" className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4 hover:ring-green-400/40 transition-all">
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
                       <Phone className="w-5 h-5 text-green-400" />
                     </div>
                     <div>
                       <p className="text-sm text-white/60 mb-1">Телефон</p>
-                      <p className="font-semibold">+7 (000) 000-00-00</p>
+                      <p className="font-semibold">+7 (963) 568-28-11</p>
                     </div>
-                  </div>
+                  </a>
+
+                  <a href="https://t.me/Death2488" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4 hover:ring-green-400/40 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Send" size={20} className="text-green-400" fallback="Phone" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 mb-1">Telegram</p>
+                      <p className="font-semibold">@Death2488</p>
+                    </div>
+                  </a>
 
                   <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
