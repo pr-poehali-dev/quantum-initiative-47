@@ -511,6 +511,21 @@ const Index = () => {
                     </div>
                   </div>
 
+                  <a
+                    href="https://yandex.ru/maps/?text=Ванино+ул+Матросова+Парк+Победы"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl bg-green-500/20 ring-1 ring-green-400/40 backdrop-blur p-6 flex items-center gap-4 hover:bg-green-500/30 transition-all"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-green-500/30 ring-1 ring-green-400/40 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Navigation" size={20} className="text-green-300" fallback="MapPin" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-green-300/80 mb-1">Яндекс Карты</p>
+                      <p className="font-semibold text-green-300">Построить маршрут →</p>
+                    </div>
+                  </a>
+
                   <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
                       <Icon name="Clock" size={20} className="text-green-400" fallback="CalendarCheck" />
