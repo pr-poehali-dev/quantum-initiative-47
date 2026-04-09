@@ -129,12 +129,12 @@ const Index = () => {
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+7"
+              href="tel:+79635682811"
               className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
             >
               Позвонить
             </a>
-            <Button className="bg-green-500 text-white hover:bg-green-400 rounded-full px-6 font-semibold">Забронировать</Button>
+            <Button className="hidden sm:inline-flex bg-green-500 text-white hover:bg-green-400 rounded-full px-6 font-semibold">Забронировать</Button>
           </div>
         </nav>
 
