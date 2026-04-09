@@ -69,6 +69,11 @@ const Index = () => {
   const [activeCategory, setActiveCategory] = useState<MenuCategory>("smoothie")
   const [cart, setCart] = useState<CartItem[]>([])
   const [cartOpen, setCartOpen] = useState(false)
+  const [checkout, setCheckout] = useState(false)
+  const [orderName, setOrderName] = useState("")
+  const [orderPhone, setOrderPhone] = useState("")
+  const [orderAddress, setOrderAddress] = useState("")
+  const [orderComment, setOrderComment] = useState("")
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
@@ -92,9 +97,20 @@ const Index = () => {
   const totalItems = cart.reduce((s, c) => s + c.qty, 0)
   const totalPrice = cart.reduce((s, c) => s + c.qty * parseInt(c.price), 0)
 
-  const cartWhatsapp = () => {
+  const sendOrder = () => {
     const lines = cart.map(c => `${c.emoji} ${c.name} × ${c.qty} = ${c.qty * parseInt(c.price)} ₽`)
-    const text = `Заказ из Зелёного Импульса:\n${lines.join("\n")}\n\nИтого: ${totalPrice} ₽`
+    const text = [
+      `🛒 Новый заказ — Зелёный Импульс`,
+      ``,
+      `👤 Имя: ${orderName}`,
+      `📞 Телефон: ${orderPhone}`,
+      `📍 Адрес: ${orderAddress}`,
+      orderComment ? `💬 Комментарий: ${orderComment}` : ``,
+      ``,
+      ...lines,
+      ``,
+      `💰 Итого: ${totalPrice} ₽`,
+    ].filter(Boolean).join("\n")
     window.open(`https://t.me/Death2488?text=${encodeURIComponent(text)}`, "_blank")
   }
 
@@ -176,14 +192,65 @@ const Index = () => {
             {/* Footer */}
             {cart.length > 0 && (
               <div className="p-6 border-t border-white/10 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-white/70">Итого:</span>
-                  <span className="text-2xl font-bold text-green-400">{totalPrice} ₽</span>
-                </div>
-                <Button onClick={cartWhatsapp} className="w-full bg-green-500 text-white hover:bg-green-400 rounded-xl py-4 font-bold text-base">
-                  Оформить через Telegram
-                </Button>
-                <p className="text-white/40 text-xs text-center">Заказ отправится в наш Telegram, мы свяжемся с вами</p>
+                {!checkout ? (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/70">Итого:</span>
+                      <span className="text-2xl font-bold text-green-400">{totalPrice} ₽</span>
+                    </div>
+                    <Button
+                      onClick={() => setCheckout(true)}
+                      className="w-full bg-green-500 text-white hover:bg-green-400 rounded-xl py-4 font-bold text-base"
+                    >
+                      Оформить заказ
+                    </Button>
+                  </>
+                ) : (
+                  <div className="space-y-3">
+                    <button onClick={() => setCheckout(false)} className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors mb-1">
+                      <Icon name="ChevronLeft" size={16} fallback="Minus" />
+                      Назад к корзине
+                    </button>
+                    <input
+                      value={orderName}
+                      onChange={e => setOrderName(e.target.value)}
+                      placeholder="Ваше имя *"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 ring-1 ring-white/20 text-white placeholder:text-white/40 focus:ring-green-400/50 focus:outline-none text-sm"
+                    />
+                    <input
+                      value={orderPhone}
+                      onChange={e => setOrderPhone(e.target.value)}
+                      placeholder="Телефон *"
+                      type="tel"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 ring-1 ring-white/20 text-white placeholder:text-white/40 focus:ring-green-400/50 focus:outline-none text-sm"
+                    />
+                    <input
+                      value={orderAddress}
+                      onChange={e => setOrderAddress(e.target.value)}
+                      placeholder="Адрес доставки *"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 ring-1 ring-white/20 text-white placeholder:text-white/40 focus:ring-green-400/50 focus:outline-none text-sm"
+                    />
+                    <textarea
+                      value={orderComment}
+                      onChange={e => setOrderComment(e.target.value)}
+                      placeholder="Комментарий (необязательно)"
+                      rows={2}
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 ring-1 ring-white/20 text-white placeholder:text-white/40 focus:ring-green-400/50 focus:outline-none text-sm resize-none"
+                    />
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-white/70 text-sm">Итого:</span>
+                      <span className="text-xl font-bold text-green-400">{totalPrice} ₽</span>
+                    </div>
+                    <Button
+                      onClick={sendOrder}
+                      disabled={!orderName || !orderPhone || !orderAddress}
+                      className="w-full bg-green-500 text-white hover:bg-green-400 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl py-4 font-bold text-base"
+                    >
+                      Отправить в Telegram
+                    </Button>
+                    <p className="text-white/40 text-xs text-center">Заказ придёт нам в Telegram, скоро свяжемся!</p>
+                  </div>
+                )}
               </div>
             )}
           </div>
