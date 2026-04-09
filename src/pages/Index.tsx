@@ -350,9 +350,9 @@ const Index = () => {
             <div className="text-center">
               <Button
                 size="lg"
-                className="bg-green-500 text-white hover:bg-green-400 rounded-full px-12 py-4 text-lg font-semibold"
+                className="bg-green-500 text-white hover:bg-green-400 rounded-full px-8 py-4 text-lg font-semibold"
               >
-                Забронировать зал для мероприятия
+                Забронировать зал
               </Button>
             </div>
           </div>
@@ -517,7 +517,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="text-sm text-white/60 mb-1">Режим работы</p>
-                      <p className="font-semibold">Пн–Вс: 08:00 – 22:00</p>
+                      <p className="font-semibold">Пн–Вс: 06:00 – 22:00</p>
                     </div>
                   </div>
                 </div>
