@@ -507,7 +507,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="text-sm text-white/60 mb-1">Адрес</p>
-                      <p className="font-semibold">п. Ванино, Хабаровский край</p>
+                      <p className="font-semibold">рп Ванино, ул. Матросова (у Парка Победы)</p>
                     </div>
                   </div>
 
