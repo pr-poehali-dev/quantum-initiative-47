@@ -1,4 +1,5 @@
-import { Compass, Lock, Sparkles, ShieldCheck, Wallet, Leaf, Plus, Minus, Mail } from "lucide-react"
+import { Bike, Laptop, Leaf, Sparkles, Utensils, CalendarCheck, Plus, Minus, Mail, Phone, MapPin } from "lucide-react"
+import Icon from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
@@ -16,56 +17,56 @@ const Index = () => {
 
   const faqs: FAQ[] = [
     {
-      question: "Насколько физически сложен этот тур?",
+      question: "Как забронировать столик?",
       answer:
-        "Экспедиция в Скрытую Долину требует отличной физической подготовки. Вам предстоит пройти более 15 км по джунглям, спуститься по веревке с 80-метровой высоты и преодолеть подземные реки. Участники должны быть готовы нести рюкзак весом 15 кг и иметь опыт спелеологии или треккинга.",
+        "Забронировать столик можно прямо на сайте — нажмите кнопку «Забронировать стол» и выберите удобное время. Подтверждение придёт на ваш телефон или email. Бронь действует 15 минут после назначенного времени.",
     },
     {
-      question: "Что входит в стоимость тура?",
+      question: "Как оформить доставку на дом?",
       answer:
-        "В стоимость экспедиции включены все разрешения, профессиональные гиды, снаряжение для безопасности, палаточное оборудование, питание на маршруте, трансфер от базового лагеря и страховка экстренной эвакуации. Личные вещи, такие как одежда и средства гигиены, не включены.",
+        "Выберите блюда из меню, укажите адрес и время доставки. Мы доставляем по посёлку Ванино. Минимальная сумма заказа — 500 рублей. Среднее время доставки — 40–60 минут.",
     },
     {
-      question: "Безопасно ли исследовать пещеру Скрытой Долины?",
+      question: "Можно ли арендовать зал для мероприятия?",
       answer:
-        "Безопасность — наш абсолютный приоритет. Все гиды — сертифицированные спасатели-спелеологи, мы используем профессиональное снаряжение, поддерживаем постоянную связь с базовым лагерем и имеем комплексные протоколы на случай ЧП. Погодные условия отслеживаются непрерывно.",
+        "Да! Мы сдаём зал в аренду для дней рождения, корпоративов, мастер-классов и других событий. Вместимость — до 30 человек. Свяжитесь с нами для уточнения деталей и стоимости.",
     },
     {
-      question: "Как забронировать место?",
+      question: "Как пользоваться велотренажёрами и рабочей зоной?",
       answer:
-        "Группы ограничены 10 участниками, экспедиции проводятся только в сухой сезон (февраль-август). Бронируйте за 6-12 месяцев через наш сайт. Предоплата 50% закрепляет ваше место, полная оплата — за 30 дней до выезда.",
+        "Велотренажёры и рабочие места с розетками доступны всем гостям кафе в течение визита. Просто займите свободное место. Работает быстрый Wi-Fi. Если планируете длительную работу — рекомендуем заранее забронировать место.",
     },
   ]
 
   return (
-    <div className="min-h-screen bg-[#0B0F12] text-white">
+    <div className="min-h-screen bg-[#0B1A0F] text-white">
       {/* Hero Section */}
       <div className="relative min-h-screen">
         {/* Background Image with Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url(https://www.elledecoration.vn/wp-content/uploads/2025/03/1-son-doong.jpg)",
+            backgroundImage: "url(https://cdn.poehali.dev/projects/6b53bfbc-0f70-4d6f-9cd6-de204cd5a663/files/bf5abb21-a20a-4707-b1c4-e638c903166b.jpg)",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-[#0B1A0F]/95" />
         </div>
 
         {/* Navigation */}
         <nav className="relative z-10 flex items-center justify-between p-6">
           {/* Logo */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full">
-            <Compass className="w-5 h-5" />
-            <span className="font-medium text-balance">Horizon Adventures</span>
+          <div className="flex items-center gap-2 px-4 py-2 bg-black/40 ring-1 ring-green-500/30 backdrop-blur rounded-full">
+            <Leaf className="w-5 h-5 text-green-400" />
+            <span className="font-semibold text-balance">Зелёный Импульс</span>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-1">
-            {["Экспедиция", "Безопасность", "Галерея", "Вопросы", "Контакты"].map((item) => (
+            {["Меню", "Доставка", "Аренда зала", "Велозона", "Контакты"].map((item) => (
               <a
                 key={item}
                 href="#"
-                className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors"
+                className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
               >
                 {item}
               </a>
@@ -75,48 +76,51 @@ const Index = () => {
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
             <a
-              href="#"
-              className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors"
+              href="tel:+7"
+              className="px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full hover:bg-black/50 transition-colors text-sm"
             >
-              Войти
+              Позвонить
             </a>
-            <Button className="bg-white text-black hover:bg-white/90 rounded-full px-6">Забронировать</Button>
+            <Button className="bg-green-500 text-white hover:bg-green-400 rounded-full px-6 font-semibold">Забронировать</Button>
           </div>
         </nav>
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-6 text-center">
           {/* Badge */}
-          <div className="mb-6 px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full">
-            <span className="text-sm font-medium">Эксклюзивные групповые экспедиции</span>
+          <div className="mb-6 px-4 py-2 bg-green-500/20 ring-1 ring-green-400/40 backdrop-blur rounded-full">
+            <span className="text-sm font-medium text-green-300">ЗОЖ кафе в Ванино • Здоровое питание и активный отдых</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-6xl md:text-8xl font-light tracking-tight mb-6 text-balance">Войдите в затерянный мир.</h1>
+          <h1 className="text-6xl md:text-8xl font-light tracking-tight mb-6 text-balance">
+            Заряди себя<br />
+            <span className="text-green-400">зелёным импульсом.</span>
+          </h1>
 
           {/* Subheading */}
           <p className="text-xl md:text-2xl text-white/90 max-w-4xl mb-12 leading-relaxed text-pretty">
-            Исследуйте грандиозные залы пещеры Скрытой Долины в Южной Америке — уникальную экосистему с собственными джунглями и погодой — в рамках 4-дневной экспедиции с гидом.
+            Здоровая еда с доставкой домой, бронь столиков и зала для мероприятий, велотренажёры и уютное рабочее пространство — всё в одном месте.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Button size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-8 py-4 text-lg">
-              Забронировать экспедицию
+            <Button size="lg" className="bg-green-500 text-white hover:bg-green-400 rounded-full px-8 py-4 text-lg font-semibold">
+              Заказать доставку
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="bg-black/40 ring-1 ring-white/20 backdrop-blur border-0 text-white hover:bg-black/50 rounded-full px-8 py-4 text-lg"
             >
-              Смотреть маршрут
+              Забронировать столик
             </Button>
           </div>
 
           {/* Footer Note */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-black/40 ring-1 ring-white/20 backdrop-blur rounded-full">
-            <Lock className="w-4 h-4" />
-            <span className="text-sm font-medium">Безопасность — наш приоритет</span>
+          <div className="flex items-center gap-2 px-4 py-2 bg-black/40 ring-1 ring-green-500/30 backdrop-blur rounded-full">
+            <MapPin className="w-4 h-4 text-green-400" />
+            <span className="text-sm font-medium">п. Ванино, Хабаровский край</span>
           </div>
         </div>
       </div>
@@ -125,111 +129,107 @@ const Index = () => {
       <section className="relative z-10 py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-            {/* Expert-Led Tours */}
-            <div className="rounded-2xl bg-black/20 ring-1 ring-white/15 backdrop-blur p-8 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/30 ring-1 ring-white/20 mb-6">
-                <Sparkles className="w-6 h-6" />
+            {/* Delivery */}
+            <div className="rounded-2xl bg-black/20 ring-1 ring-green-500/20 backdrop-blur p-8 text-center hover:ring-green-400/40 transition-all">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 mb-6">
+                <Icon name="Truck" size={24} className="text-green-400" fallback="Package" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Туры с экспертами</h3>
-              <p className="text-white/80 leading-relaxed">Ведут геологи, спелеологи и местные специалисты.</p>
+              <h3 className="text-xl font-semibold mb-4">Доставка на дом</h3>
+              <p className="text-white/80 leading-relaxed">Свежая и полезная еда привезём прямо к вашей двери по всему Ванино.</p>
             </div>
 
-            {/* World-Class Safety */}
-            <div className="rounded-2xl bg-black/20 ring-1 ring-white/15 backdrop-blur p-8 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/30 ring-1 ring-white/20 mb-6">
-                <ShieldCheck className="w-6 h-6" />
+            {/* Table booking */}
+            <div className="rounded-2xl bg-black/20 ring-1 ring-green-500/20 backdrop-blur p-8 text-center hover:ring-green-400/40 transition-all">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 mb-6">
+                <CalendarCheck className="w-6 h-6 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Мировой уровень безопасности</h3>
-              <p className="text-white/80 leading-relaxed">Строгие протоколы и современное снаряжение.</p>
+              <h3 className="text-xl font-semibold mb-4">Бронь столиков</h3>
+              <p className="text-white/80 leading-relaxed">Зарезервируйте место заранее — никакого ожидания, только уют и вкусная еда.</p>
             </div>
 
-            {/* All-Inclusive Package */}
-            <div className="rounded-2xl bg-black/20 ring-1 ring-white/15 backdrop-blur p-8 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/30 ring-1 ring-white/20 mb-6">
-                <Wallet className="w-6 h-6" />
+            {/* Bikes */}
+            <div className="rounded-2xl bg-black/20 ring-1 ring-green-500/20 backdrop-blur p-8 text-center hover:ring-green-400/40 transition-all">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 mb-6">
+                <Bike className="w-6 h-6 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Все включено</h3>
-              <p className="text-white/80 leading-relaxed">Разрешения, снаряжение, питание и трансфер.</p>
+              <h3 className="text-xl font-semibold mb-4">Велотренажёры</h3>
+              <p className="text-white/80 leading-relaxed">Совмещайте отдых и спорт — велотренажёры доступны для всех гостей кафе.</p>
             </div>
 
-            {/* Eco-Friendly Caving */}
-            <div className="rounded-2xl bg-black/20 ring-1 ring-white/15 backdrop-blur p-8 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-black/30 ring-1 ring-white/20 mb-6">
-                <Leaf className="w-6 h-6" />
+            {/* Workspace */}
+            <div className="rounded-2xl bg-black/20 ring-1 ring-green-500/20 backdrop-blur p-8 text-center hover:ring-green-400/40 transition-all">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 mb-6">
+                <Laptop className="w-6 h-6 text-green-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Эко-спелеология</h3>
-              <p className="text-white/80 leading-relaxed">Мы бережно сохраняем экосистему пещеры.</p>
+              <h3 className="text-xl font-semibold mb-4">Рабочее пространство</h3>
+              <p className="text-white/80 leading-relaxed">Быстрый Wi-Fi, розетки и тихая атмосфера — идеально для работы с ноутбуком.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Journey Section */}
+      {/* Services Section */}
       <section className="relative z-10 py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="rounded-3xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-12">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">Ваше эпическое путешествие</h2>
+              <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">Как это работает</h2>
               <p className="text-xl text-white/80 max-w-3xl mx-auto text-pretty">
-                От джунглей до подземных лагерей — вот что вас ждет.
+                Всё просто — выберите нужную услугу и наслаждайтесь.
               </p>
             </div>
 
-            {/* Journey Cards */}
+            {/* Steps Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-              {/* Phase 1: Briefing & Prep */}
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-8 h-80 flex flex-col">
                 <div className="flex-1">
-                  <div className="text-3xl font-bold text-white/60 mb-4">01.</div>
-                  <h3 className="text-xl font-semibold mb-4">Инструктаж</h3>
+                  <div className="text-3xl font-bold text-green-400/60 mb-4">01.</div>
+                  <h3 className="text-xl font-semibold mb-4">Выберите услугу</h3>
                   <p className="text-white/80 leading-relaxed text-sm">
-                    Ваше приключение начинается в базовом лагере с полного инструктажа по безопасности и проверки снаряжения.
+                    Доставка, бронь столика, аренда зала или рабочее место — выберите то, что нужно именно вам.
                   </p>
                 </div>
               </div>
 
-              {/* Phase 2: The Trek */}
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-8 h-80 flex flex-col">
                 <div className="flex-1">
-                  <div className="text-3xl font-bold text-white/60 mb-4">02.</div>
-                  <h3 className="text-xl font-semibold mb-4">Треккинг</h3>
+                  <div className="text-3xl font-bold text-green-400/60 mb-4">02.</div>
+                  <h3 className="text-xl font-semibold mb-4">Оформите заказ</h3>
                   <p className="text-white/80 leading-relaxed text-sm">
-                    Идите через нетронутые джунгли, пересекайте реки и ночуйте в удаленных точках по пути ко входу в Скрытую Долину.
+                    Заполните простую форму — укажите время, адрес или пожелания к мероприятию. Займёт меньше минуты.
                   </p>
                 </div>
               </div>
 
-              {/* Phase 3: Caving */}
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-8 h-80 flex flex-col">
                 <div className="flex-1">
-                  <div className="text-3xl font-bold text-white/60 mb-4">03.</div>
-                  <h3 className="text-xl font-semibold mb-4">Спелеология</h3>
+                  <div className="text-3xl font-bold text-green-400/60 mb-4">03.</div>
+                  <h3 className="text-xl font-semibold mb-4">Получите подтверждение</h3>
                   <p className="text-white/80 leading-relaxed text-sm">
-                    Спуститесь в пещеру, чтобы увидеть гигантские сталагмиты, исследовать огромные залы и уникальные подземные джунгли.
+                    Мы свяжемся с вами, подтвердим бронь или заказ и ответим на все вопросы.
                   </p>
                 </div>
               </div>
 
-              {/* Phase 4: Base Camp */}
               <div className="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-8 h-80 flex flex-col">
                 <div className="flex-1">
-                  <div className="text-3xl font-bold text-white/60 mb-4">04.</div>
-                  <h3 className="text-xl font-semibold mb-4">Базовый лагерь</h3>
+                  <div className="text-3xl font-bold text-green-400/60 mb-4">04.</div>
+                  <h3 className="text-xl font-semibold mb-4">Наслаждайтесь!</h3>
                   <p className="text-white/80 leading-relaxed text-sm">
-                    Проведите ночи на потрясающих стоянках внутри пещеры, делясь историями с группой перед обратным путем.
+                    Вкусная и здоровая еда, уютная атмосфера, велотренажёры и рабочее пространство — всё для вас.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Check Availability Button */}
+            {/* CTA Button */}
             <div className="text-center">
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-white/90 rounded-full px-12 py-4 text-lg font-semibold"
+                className="bg-green-500 text-white hover:bg-green-400 rounded-full px-12 py-4 text-lg font-semibold"
               >
-                Проверить наличие мест
+                Забронировать зал для мероприятия
               </Button>
             </div>
           </div>
@@ -241,13 +241,13 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="rounded-3xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-              {/* Left Column - Title and Description */}
+              {/* Left Column */}
               <div>
                 <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
                   Частые вопросы
                 </h2>
                 <p className="text-xl text-white/80 leading-relaxed text-pretty">
-                  Все, что нужно знать об экспедиции: от физических требований до бронирования места в этом эксклюзивном приключении.
+                  Всё, что нужно знать о доставке, брони столиков, аренде зала и возможностях кафе.
                 </p>
               </div>
 
@@ -264,9 +264,9 @@ const Index = () => {
                     >
                       <h3 className="text-lg font-semibold pr-4">{faq.question}</h3>
                       {openFaq === index ? (
-                        <Minus className="w-5 h-5 flex-shrink-0" />
+                        <Minus className="w-5 h-5 flex-shrink-0 text-green-400" />
                       ) : (
-                        <Plus className="w-5 h-5 flex-shrink-0" />
+                        <Plus className="w-5 h-5 flex-shrink-0 text-green-400" />
                       )}
                     </button>
                     {openFaq === index && (
@@ -285,16 +285,17 @@ const Index = () => {
       {/* Contact Section */}
       <section className="relative z-10 py-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-3xl bg-black/20 ring-1 ring-white/15 backdrop-blur p-12">
+          <div className="rounded-3xl bg-black/20 ring-1 ring-green-500/20 backdrop-blur p-12">
             {/* Section Header */}
             <div className="text-center mb-16">
               <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">Свяжитесь с нами</h2>
+              <p className="text-white/70 text-lg">Готовы ответить на любые вопросы и принять вашу заявку</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               {/* Left Column - Contact Form */}
               <div className="rounded-2xl bg-white/95 text-black p-8 shadow-2xl">
-                <h3 className="text-2xl font-bold mb-6">Отправить запрос</h3>
+                <h3 className="text-2xl font-bold mb-6">Оставить заявку</h3>
                 <form className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -303,63 +304,89 @@ const Index = () => {
                     <input
                       type="text"
                       id="name"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Ваше полное имя"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                      placeholder="Ваше имя"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
+                    <label htmlFor="phone" className="block text-sm font-medium mb-2">
+                      Телефон
                     </label>
                     <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="your.email@example.com"
+                      type="tel"
+                      id="phone"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                      placeholder="+7 (000) 000-00-00"
                     />
+                  </div>
+                  <div>
+                    <label htmlFor="service" className="block text-sm font-medium mb-2">
+                      Что вас интересует?
+                    </label>
+                    <select
+                      id="service"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none bg-white"
+                    >
+                      <option value="">Выберите услугу</option>
+                      <option value="delivery">Доставка на дом</option>
+                      <option value="table">Бронь столика</option>
+                      <option value="hall">Аренда зала</option>
+                      <option value="workspace">Рабочее место</option>
+                    </select>
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium mb-2">
-                      Сообщение
+                      Комментарий
                     </label>
                     <textarea
                       id="message"
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                      placeholder="Расскажите о ваших интересах в экспедиции..."
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none outline-none"
+                      placeholder="Дата, время, особые пожелания..."
                     />
                   </div>
-                  <Button className="w-full bg-black text-white hover:bg-gray-800 rounded-lg py-3 font-normal text-base">
-                    Отправить сообщение
+                  <Button className="w-full bg-green-500 text-white hover:bg-green-600 rounded-lg py-3 font-semibold text-base">
+                    Отправить заявку
                   </Button>
                 </form>
               </div>
 
               {/* Right Column - Contact Info */}
               <div className="space-y-8">
-                <div>
-                  <p className="text-xl text-white/90 leading-relaxed text-pretty">
-                    По вопросам индивидуальных туров, партнерства или для СМИ — свяжитесь с нами. Мы отвечаем в течение одного рабочего дня.
-                  </p>
-                </div>
+                <p className="text-xl text-white/90 leading-relaxed text-pretty">
+                  Бронируйте столик, заказывайте доставку или арендуйте зал — мы всегда на связи и рады помочь.
+                </p>
 
-                {/* Profile Card */}
-                <div className="rounded-2xl bg-white/95 text-black p-6 shadow-2xl">
-                  <div className="flex items-center gap-4 mb-4">
-                    <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-                      alt="Маркус Уильямс"
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
+                <div className="space-y-4">
+                  <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 text-green-400" />
+                    </div>
                     <div>
-                      <h4 className="text-lg font-semibold">Маркус Уильямс</h4>
-                      <p className="text-gray-600">Руководитель экспедиций</p>
+                      <p className="text-sm text-white/60 mb-1">Телефон</p>
+                      <p className="font-semibold">+7 (000) 000-00-00</p>
                     </div>
                   </div>
-                  <Button className="w-full bg-black text-white hover:bg-gray-800 rounded-lg flex items-center justify-center gap-2">
-                    <Mail className="w-4 h-4" />
-                    Написать
-                  </Button>
+
+                  <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 text-green-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 mb-1">Адрес</p>
+                      <p className="font-semibold">п. Ванино, Хабаровский край</p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl bg-white/10 ring-1 ring-white/10 backdrop-blur p-6 flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-green-500/20 ring-1 ring-green-400/30 flex items-center justify-center flex-shrink-0">
+                      <Icon name="Clock" size={20} className="text-green-400" fallback="CalendarCheck" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-white/60 mb-1">Режим работы</p>
+                      <p className="font-semibold">Пн–Вс: 08:00 – 22:00</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -376,19 +403,19 @@ const Index = () => {
               {/* Brand Section */}
               <div className="lg:col-span-2">
                 <div className="flex items-center gap-2 mb-6">
-                  <Compass className="w-6 h-6" />
-                  <span className="text-xl font-semibold">Horizon Adventures</span>
+                  <Leaf className="w-6 h-6 text-green-400" />
+                  <span className="text-xl font-semibold">Зелёный Импульс</span>
                 </div>
                 <p className="text-white/80 leading-relaxed text-pretty">
-                  Официальный туроператор экспедиций в Скрытую Долину — крупнейшую пещеру мира. Мы преданы безопасности, охране природы и незабываемым приключениям.
+                  ЗОЖ кафе в посёлке Ванино. Доставка полезной еды, уютное пространство для работы и отдыха, велотренажёры и аренда зала для любых мероприятий.
                 </p>
               </div>
 
-              {/* Expedition Links */}
+              {/* Services Links */}
               <div>
-                <h3 className="text-sm font-bold uppercase tracking-wider mb-6">ЭКСПЕДИЦИЯ</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider mb-6 text-green-400">УСЛУГИ</h3>
                 <ul className="space-y-3">
-                  {["Маршрут", "Цены", "Список снаряжения", "Фотогалерея"].map((item) => (
+                  {["Доставка на дом", "Бронь столика", "Аренда зала", "Велотренажёры"].map((item) => (
                     <li key={item}>
                       <a href="#" className="text-white/70 hover:text-white transition-colors text-sm leading-relaxed">
                         {item}
@@ -400,9 +427,9 @@ const Index = () => {
 
               {/* About Links */}
               <div>
-                <h3 className="text-sm font-bold uppercase tracking-wider mb-6">О НАС</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider mb-6 text-green-400">О НАС</h3>
                 <ul className="space-y-3">
-                  {["Наша миссия", "Стандарты безопасности", "Команда", "Охрана природы"].map((item) => (
+                  {["Наше меню", "ЗОЖ питание", "Команда", "О кафе"].map((item) => (
                     <li key={item}>
                       <a href="#" className="text-white/70 hover:text-white transition-colors text-sm leading-relaxed">
                         {item}
@@ -412,11 +439,11 @@ const Index = () => {
                 </ul>
               </div>
 
-              {/* Resources Links */}
+              {/* Support Links */}
               <div>
-                <h3 className="text-sm font-bold uppercase tracking-wider mb-6">ПОДДЕРЖКА</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider mb-6 text-green-400">ПОДДЕРЖКА</h3>
                 <ul className="space-y-3">
-                  {["Справочный центр", "Контакты", "Вопросы и ответы", "Условия"].map((item) => (
+                  {["Контакты", "Вопросы и ответы", "Условия доставки", "Политика"].map((item) => (
                     <li key={item}>
                       <a href="#" className="text-white/70 hover:text-white transition-colors text-sm leading-relaxed">
                         {item}
@@ -430,21 +457,22 @@ const Index = () => {
             {/* Newsletter Section */}
             <div className="border-t border-white/10 pt-12 mb-12">
               <div className="max-w-md">
-                <h3 className="text-lg font-semibold mb-4">Новости экспедиций</h3>
+                <h3 className="text-lg font-semibold mb-2">Акции и новинки меню</h3>
+                <p className="text-white/60 text-sm mb-4">Подпишитесь и узнавайте первыми о специальных предложениях</p>
                 <div className="flex gap-3">
                   <input
                     type="email"
                     placeholder="Введите ваш email"
-                    className="flex-1 px-4 py-3 rounded-lg bg-white/5 ring-1 ring-white/20 backdrop-blur border-0 text-white placeholder:text-white/50 focus:ring-2 focus:ring-white/30 focus:outline-none"
+                    className="flex-1 px-4 py-3 rounded-lg bg-white/5 ring-1 ring-white/20 backdrop-blur border-0 text-white placeholder:text-white/50 focus:ring-2 focus:ring-green-400/50 focus:outline-none"
                   />
-                  <Button className="bg-white text-black hover:bg-white/90 rounded-lg px-6 h-[50px]">Подписаться</Button>
+                  <Button className="bg-green-500 text-white hover:bg-green-400 rounded-lg px-6 h-[50px] font-semibold">Подписаться</Button>
                 </div>
               </div>
             </div>
 
             {/* Sub-footer */}
             <div className="border-t border-white/10 pt-8">
-              <p className="text-white/60 text-sm text-center">© 2025 Horizon Adventures</p>
+              <p className="text-white/60 text-sm text-center">© 2026 Зелёный Импульс — ЗОЖ кафе, п. Ванино</p>
             </div>
           </div>
         </div>
