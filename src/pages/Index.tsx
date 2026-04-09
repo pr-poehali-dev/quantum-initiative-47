@@ -1,4 +1,4 @@
-import { Bike, Laptop, Leaf, Sparkles, Utensils, CalendarCheck, Plus, Minus, Mail, Phone, MapPin } from "lucide-react"
+import { Bike, Laptop, Leaf, CalendarCheck, Plus, Minus, Phone, MapPin } from "lucide-react"
 import Icon from "@/components/ui/icon"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -8,8 +8,61 @@ interface FAQ {
   answer: string
 }
 
+interface MenuItem {
+  name: string
+  description: string
+  price: string
+  emoji: string
+  tag?: string
+}
+
+type MenuCategory = "smoothie" | "coffee" | "tea" | "lemonade"
+
+const menuData: Record<MenuCategory, MenuItem[]> = {
+  smoothie: [
+    { name: "Зелёный детокс", description: "Шпинат, огурец, яблоко, имбирь, лимон", price: "290 ₽", emoji: "🥒", tag: "Детокс" },
+    { name: "Тропический заряд", description: "Манго, ананас, банан, куркума, кокосовое молоко", price: "320 ₽", emoji: "🥭", tag: "Энергия" },
+    { name: "Ягодный антиоксидант", description: "Черника, малина, клубника, chia, миндальное молоко", price: "310 ₽", emoji: "🫐", tag: "Хит" },
+    { name: "Авокадо Бустер", description: "Авокадо, банан, мёд, спирулина, овсяное молоко", price: "340 ₽", emoji: "🥑" },
+    { name: "Свёкольный Иммун", description: "Свёкла, морковь, апельсин, имбирь, куркума", price: "280 ₽", emoji: "🫚", tag: "Иммунитет" },
+    { name: "Протеиновый Старт", description: "Банан, арахисовая паста, какао, протеин, овсяное молоко", price: "350 ₽", emoji: "💪", tag: "Спорт" },
+  ],
+  coffee: [
+    { name: "Чистый Американо", description: "Арабика 100%, холодная фильтрованная вода, без сахара", price: "180 ₽", emoji: "☕" },
+    { name: "Овсяный Латте", description: "Эспрессо, овсяное молоко, без рафинированного сахара", price: "230 ₽", emoji: "🥛", tag: "Популярное" },
+    { name: "Матча Латте", description: "Японский матча, миндальное молоко, агава", price: "270 ₽", emoji: "🍵", tag: "Хит" },
+    { name: "Кофе с Куркумой", description: "Эспрессо, кокосовое молоко, куркума, корица, чёрный перец", price: "260 ₽", emoji: "✨", tag: "Здоровье" },
+  ],
+  tea: [
+    { name: "Иван-чай с мятой", description: "Ферментированный иван-чай, свежая мята, мёд", price: "200 ₽", emoji: "🌿", tag: "Крафт" },
+    { name: "Шиповник и облепиха", description: "Дикий шиповник, облепиха, имбирь — горячий или холодный", price: "210 ₽", emoji: "🍊", tag: "Витамины" },
+    { name: "Чабрец и зверобой", description: "Горные травы, мёд, лимон — классический сбор", price: "190 ₽", emoji: "🌸" },
+    { name: "Пуэр с ягодами", description: "Выдержанный пуэр, сушёные ягоды годжи, корица", price: "250 ₽", emoji: "🫖", tag: "Эксклюзив" },
+  ],
+  lemonade: [
+    { name: "Огуречный Кул", description: "Огурец, мята, лимон, агава, минеральная вода", price: "220 ₽", emoji: "🌊", tag: "Освежает" },
+    { name: "Имбирный Кикер", description: "Свежий имбирь, лимон, мёд, куркума, газированная вода", price: "230 ₽", emoji: "⚡", tag: "Бодрость" },
+    { name: "Ягодный Морс", description: "Брусника, клюква, малина, стевия, мята", price: "240 ₽", emoji: "🍓", tag: "Хит" },
+  ],
+}
+
+const categoryLabels: Record<MenuCategory, string> = {
+  smoothie: "Смузи",
+  coffee: "Кофе",
+  tea: "Крафтовый чай",
+  lemonade: "Лимонады",
+}
+
+const categoryIcons: Record<MenuCategory, string> = {
+  smoothie: "🥤",
+  coffee: "☕",
+  tea: "🍵",
+  lemonade: "🍋",
+}
+
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [activeCategory, setActiveCategory] = useState<MenuCategory>("smoothie")
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
@@ -164,6 +217,76 @@ const Index = () => {
               <h3 className="text-xl font-semibold mb-4">Рабочее пространство</h3>
               <p className="text-white/80 leading-relaxed">Быстрый Wi-Fi, розетки и тихая атмосфера — идеально для работы с ноутбуком.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Menu Section */}
+      <section className="relative z-10 py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4 px-4 py-2 bg-green-500/20 ring-1 ring-green-400/40 backdrop-blur rounded-full">
+              <span className="text-sm font-medium text-green-300">Всё натуральное, без сахара и химии</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">Наше меню</h2>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Каждый напиток готовится из свежих ингредиентов прямо при вас
+            </p>
+          </div>
+
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {(Object.keys(menuData) as MenuCategory[]).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-3 rounded-full font-medium transition-all text-sm ${
+                  activeCategory === cat
+                    ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
+                    : "bg-white/10 ring-1 ring-white/20 text-white/70 hover:bg-white/15 hover:text-white"
+                }`}
+              >
+                {categoryIcons[cat]} {categoryLabels[cat]}
+              </button>
+            ))}
+          </div>
+
+          {/* Menu Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {menuData[activeCategory].map((item, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur p-6 flex flex-col gap-4 hover:ring-green-500/30 hover:bg-white/[0.07] transition-all"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="text-4xl">{item.emoji}</div>
+                  {item.tag && (
+                    <span className="px-3 py-1 rounded-full bg-green-500/20 ring-1 ring-green-400/30 text-green-300 text-xs font-semibold flex-shrink-0">
+                      {item.tag}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">{item.name}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                </div>
+                <div className="flex items-center justify-between mt-auto pt-2 border-t border-white/10">
+                  <span className="text-xl font-bold text-green-400">{item.price}</span>
+                  <Button
+                    size="sm"
+                    className="bg-green-500/20 text-green-300 hover:bg-green-500 hover:text-white ring-1 ring-green-400/30 rounded-full px-4 transition-all"
+                  >
+                    Заказать
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" className="bg-green-500 text-white hover:bg-green-400 rounded-full px-10 font-semibold">
+              Заказать с доставкой
+            </Button>
           </div>
         </div>
       </section>
