@@ -28,8 +28,9 @@ const menuData: Record<MenuCategory, MenuItem[]> = {
     { name: "Тропический заряд", description: "Манго, ананас, банан, куркума, кокосовое молоко", price: "320 ₽", emoji: "🥭", tag: "Энергия" },
     { name: "Ягодный антиоксидант", description: "Черника, малина, клубника, chia, миндальное молоко", price: "310 ₽", emoji: "🫐", tag: "Хит" },
     { name: "Авокадо Бустер", description: "Авокадо, банан, мёд, спирулина, овсяное молоко", price: "340 ₽", emoji: "🥑" },
-    { name: "Свёкольный Иммун", description: "Свёкла, морковь, апельсин, имбирь, куркума", price: "280 ₽", emoji: "🫚", tag: "Иммунитет" },
+    { name: "Свёкольный Иммун", description: "Свёкла, морковь, апельсин, имбирь, куркума", price: "280 ₽", emoji: "🫛", tag: "Иммунитет" },
     { name: "Протеиновый Старт", description: "Банан, арахисовая паста, какао, протеин, овсяное молоко", price: "350 ₽", emoji: "💪", tag: "Спорт" },
+    { name: "Имбирный Огонь", description: "Свежий имбирь, лимон, яблоко, куркума, кокосовая вода", price: "300 ₽", emoji: "🫙", tag: "Жар" },
   ],
   coffee: [
     { name: "Чистый Американо", description: "Арабика 100%, холодная фильтрованная вода, без сахара", price: "180 ₽", emoji: "☕" },
@@ -39,7 +40,7 @@ const menuData: Record<MenuCategory, MenuItem[]> = {
   ],
   tea: [
     { name: "Иван-чай с мятой", description: "Ферментированный иван-чай, свежая мята, мёд", price: "200 ₽", emoji: "🌿", tag: "Крафт" },
-    { name: "Шиповник и облепиха", description: "Дикий шиповник, облепиха, имбирь — горячий или холодный", price: "210 ₽", emoji: "🍊", tag: "Витамины" },
+    { name: "Шиповник и облепиха", description: "Дикий шиповник, облепиха, имбирь — горячий или холодный", price: "210 ₽", emoji: "🌺", tag: "Витамины" },
     { name: "Чабрец и зверобой", description: "Горные травы, мёд, лимон — классический сбор", price: "190 ₽", emoji: "🌸" },
     { name: "Пуэр с ягодами", description: "Выдержанный пуэр, сушёные ягоды годжи, корица", price: "250 ₽", emoji: "🫖", tag: "Эксклюзив" },
   ],
@@ -463,6 +464,54 @@ const Index = () => {
             <Button size="lg" className="bg-green-500 text-white hover:bg-green-400 rounded-full px-10 font-semibold">
               Заказать с доставкой
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Merch Section */}
+      <section className="relative z-10 py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-green-500/10 ring-1 ring-green-400/30 text-green-300 text-sm font-medium mb-4">Мерч</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Носи своё настроение</h2>
+            <p className="text-white/60 text-lg max-w-xl mx-auto">Стильные вещи с фирменной символикой Зелёного Импульса — для тех, кто живёт осознанно</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: "Шопер", description: "Плотный хлопок, вместительный, с принтом логотипа", price: "590 ₽", emoji: "🛍️", tag: "Эко" },
+              { name: "Футболка", description: "100% органический хлопок, унисекс, несколько цветов", price: "1 490 ₽", emoji: "👕", tag: "Хит" },
+              { name: "Кружка", description: "Керамика 350 мл, термостойкая, с рисунком", price: "890 ₽", emoji: "☕", tag: "Уют" },
+              { name: "Бандана", description: "Лёгкая хлопковая бандана с фирменным принтом", price: "490 ₽", emoji: "🩱", tag: "Стиль" },
+            ].map((item) => (
+              <div
+                key={item.name}
+                className="group rounded-3xl bg-white/5 ring-1 ring-white/10 hover:ring-green-400/30 p-6 flex flex-col gap-4 transition-all hover:-translate-y-1"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="text-5xl">{item.emoji}</div>
+                  {item.tag && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-300 text-xs font-medium ring-1 ring-green-400/20">
+                      {item.tag}
+                    </span>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                  <span className="text-xl font-bold text-green-400">{item.price}</span>
+                  <Button
+                    size="sm"
+                    onClick={() => { addToCart(item); setCartOpen(true) }}
+                    className="bg-green-500/20 text-green-300 hover:bg-green-500 hover:text-white ring-1 ring-green-400/30 rounded-full px-4 transition-all"
+                  >
+                    В корзину
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
